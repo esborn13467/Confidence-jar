@@ -16,7 +16,7 @@
       margin: 0;
       padding: 20px;
     }
-    .card {
+    .card, .welcome {
       background: white;
       border-radius: 16px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -43,10 +43,17 @@
   </style>
 </head>
 <body>
-  <div class="card" id="quoteCard">
+  <div class="welcome" id="welcomeScreen">
+    <h2>Welcome, Anne 💖</h2>
+    <p>This is your personal confidence deck — a space made just for you.</p>
+    <p>Whenever you need a reminder of your light, click below to receive it.</p>
+    <button onclick="startApp()">Start My Day</button>
+  </div>
+
+  <div class="card" id="quoteCard" style="display: none;">
     Loading confidence magic...
   </div>
-  <button onclick="showRandomQuote()">Next Card</button>
+  <button id="nextBtn" onclick="showRandomQuote()" style="display: none;">Next Card</button>
 
   <script>
     const quotes = [
@@ -73,8 +80,12 @@
       quoteCard.textContent = quotes[randomIndex];
     }
 
-    // Show a quote on load
-    showRandomQuote();
+    function startApp() {
+      document.getElementById('welcomeScreen').style.display = 'none';
+      document.getElementById('quoteCard').style.display = 'block';
+      document.getElementById('nextBtn').style.display = 'inline-block';
+      showRandomQuote();
+    }
   </script>
 </body>
 </html>
